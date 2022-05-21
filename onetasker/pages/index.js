@@ -1,10 +1,10 @@
 import Head from "next/head";
 import Footer from "../components/Footer.js";
 import Timer from "../components/Timer.js";
-import React, { useState, useEffect } from "react";
+import Header from "../components/Header.js";
+import React from "react";
 
 export default function Home() {
-  const [counterOn, setCounterOn] = useState(false);
   return (
     <div>
       <Head>
@@ -14,7 +14,8 @@ export default function Home() {
       </Head>
 
       <main className="min-h-screen">
-        <Timer /> 
+        <Header />
+        <Timer />
       </main>
 
       <Footer />
