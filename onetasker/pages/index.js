@@ -6,14 +6,14 @@ import React from "react";
 
 export default function Home() {
   return (
-    <div>
+    <div className="bg-amber-100 overscroll-none">
       <Head>
         <title>OneTask</title>
-        <meta name="description" content="Pomodoro App" />
+        <meta name="description" content="OneTasker" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="min-h-screen">
+      <main className="min-h-screen px-10 py-2">
         <Header />
         <Timer />
       </main>

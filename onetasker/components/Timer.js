@@ -19,11 +19,19 @@ export default function Timer() {
   };
 
   return (
-    <>
-      <h1>
-        Welcome to <a href="https://nextjs.org">Next.js!</a>
+    <div className="flex flex-col gap-5">
+      <div className="w-32 h-16 pt-5 mx-auto text-center bg-amber-400 rounded">
+      <h1 className="">
+        {counter}
       </h1>
-      <button onClick={startInterval}>{counter}</button>
-    </>
+      </div>
+
+      <button
+        className="w-32 mx-auto bg-amber-400 rounded"
+        onClick={startInterval}
+      >
+        start
+      </button>
+    </div>
   );
 }
