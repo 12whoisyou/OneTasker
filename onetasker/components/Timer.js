@@ -13,21 +13,24 @@ export default function Timer() {
   const startInterval = () => {
     timeout = setInterval(() => {
       setCounter((counter) => counter + 1);
-      console.log("counter: ", myCounter); // counter always return 0 but myCounter the updated value
+      // counter always return 0 but myCounter the updated value
+      console.log("counter: ", myCounter);
       if (myCounter === 10) clearInterval(timeout);
     }, 1000);
   };
 
   return (
     <div className="flex flex-col gap-5">
-      <div className="w-32 h-16 pt-5 mx-auto text-center bg-amber-400 rounded">
-      <h1 className="">
-        {counter}
-      </h1>
+      <div
+        className="w-32 h-16 pt-5 mx-auto text-center bg-[#FFE479]
+        drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]"
+      >
+        <h1 className="">{counter}</h1>
       </div>
 
       <button
-        className="w-32 mx-auto bg-amber-400 rounded"
+        className="w-32 mx-auto bg-[#FF79C9] 
+        drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]"
         onClick={startInterval}
       >
         start
