@@ -5,7 +5,7 @@ export default function Header() {
         onClick={() => {
           window.location.reload();
         }}
-        className="text-3xl mr-auto bg-black text-white relative px-3 py-3 bottom-2"
+        className="text-4xl mr-auto bg-black text-white relative px-3 py-3 bottom-2"
       >
         <span className="bottom-1 relative border-b-4 border-white">
           {" "}
@@ -17,7 +17,7 @@ export default function Header() {
         onClick={() => {
           window.location.href = "/Profile";
         }}
-        className="text-3xl"
+        className="text-4xl"
       >
         Profile
       </button>
@@ -25,7 +25,7 @@ export default function Header() {
         onClick={() => {
           window.location.href = "/Settings";
         }}
-        className="text-3xl"
+        className="text-4xl"
       >
         Settings
       </button>

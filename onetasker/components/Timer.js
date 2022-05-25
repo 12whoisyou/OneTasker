@@ -25,12 +25,15 @@ export default function Timer() {
         className="w-32 h-16 pt-5 mx-auto text-center bg-[#FFE479]
         drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]"
       >
-        <h1 className="">{counter}</h1>
+        <h1 className="text-4xl">
+          {counter}:{counter}
+        </h1>
       </div>
 
       <button
         className="w-32 mx-auto bg-[#FF79C9] 
-        drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]"
+        drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]
+        text-2xl"
         onClick={startInterval}
       >
         start

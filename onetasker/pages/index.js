@@ -2,6 +2,7 @@ import Head from "next/head";
 import Footer from "../components/Footer.js";
 import Timer from "../components/Timer.js";
 import Header from "../components/Header.js";
+import Tasks from "../components/Tasks.js";
 import React from "react";
 
 export default function Home() {
@@ -15,7 +16,7 @@ export default function Home() {
 
       <main className="min-h-screen px-10 py-2">
         <Header />
-        <Timer />
+        <Tasks />
       </main>
 
       <Footer />
