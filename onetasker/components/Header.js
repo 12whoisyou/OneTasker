@@ -3,7 +3,7 @@ export default function Header() {
     <div className="flex flex-row gap-10">
       <button
         onClick={() => {
-          window.location.reload();
+          window.location.href = "/";
         }}
         className="text-4xl mr-auto bg-black text-white relative px-3 py-3 bottom-2"
       >
@@ -15,7 +15,7 @@ export default function Header() {
 
       <button
         onClick={() => {
-          window.location.href = "/Profile";
+          window.location.href = "/profile";
         }}
         className="text-4xl"
       >
@@ -23,7 +23,7 @@ export default function Header() {
       </button>
       <button
         onClick={() => {
-          window.location.href = "/Settings";
+          window.location.href = "/settings";
         }}
         className="text-4xl"
       >
