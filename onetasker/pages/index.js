@@ -48,7 +48,7 @@ export default function Home() {
         {tasks.map((task, id) => (
           <li key={id} className="my-5 bg-white rounded-xl p-3 flex">
             {task}
-            <div className="ml-auto pl-5">x</div>
+            <button className="ml-auto my-auto pl-5">x</button>
           </li>
         ))}
       </ol>
