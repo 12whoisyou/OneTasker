@@ -3,19 +3,25 @@ import React, { useState, useEffect } from "react";
 let myCounter = 0;
 let timeout = null;
 export default function Timer() {
-  const [counter, setCounter] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [timerOn, setTimerOn] = useState(false);
 
+  //The timer start automaticlly, so we got to cancel it
   useEffect(() => {
     return () => clearInterval(timeout);
   }, []);
 
-  myCounter = counter;
+  myCounter = seconds;
   const startInterval = () => {
     timeout = setInterval(() => {
-      setCounter((counter) => counter + 1);
-      // counter always return 0 but myCounter the updated value
-      console.log("counter: ", myCounter);
-      if (myCounter === 10) clearInterval(timeout);
+      setSeconds((seconds) => seconds + 1);
+
+      // seconds always return 0 but myCounter the updated value
+      if (myCounter === 59) {
+        setSeconds(0);
+        setMinutes((minutes) => minutes + 1);
+      }
     }, 1000);
   };
 
@@ -26,7 +32,7 @@ export default function Timer() {
         drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]"
       >
         <h1 className="text-4xl">
-          {counter}:{counter}
+          {minutes}:{seconds}
         </h1>
       </div>
 
@@ -34,9 +40,13 @@ export default function Timer() {
         className="w-32 mx-auto bg-[#FF79C9] 
         drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]
         text-2xl"
-        onClick={startInterval}
+        onClick={() => {
+          setTimerOn(!timerOn);
+          if (!timerOn) startInterval();
+          if (timerOn) clearInterval(timeout);
+        }}
       >
-        start
+        {timerOn ? "Stop" : "Start"}
       </button>
     </div>
   );
