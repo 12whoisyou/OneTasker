@@ -5,7 +5,7 @@ export default function Header() {
         onClick={() => {
           window.location.href = "/";
         }}
-        className="text-4xl mr-auto bg-black text-white relative px-3 py-3 bottom-2"
+        className="sm:text-3xl md:text-4xl mr-auto bg-black text-white relative px-3 py-3 bottom-2"
       >
         <span className="bottom-1 relative border-b-4 border-white">
           {" "}

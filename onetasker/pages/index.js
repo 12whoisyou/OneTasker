@@ -8,6 +8,11 @@ export default function Home() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
 
+  const submitTask = () => {
+    const prevTasks = tasks;
+    setTasks((tasks) => [input, ...tasks]);
+    setInput("");
+  };
   return (
     <div className="flex flex-col gap-5">
       <button
@@ -29,16 +34,17 @@ export default function Home() {
           onChange={(e) => {
             setInput(e.target.value);
           }}
+          onKeyDown={(e) => {
+            if (e.keyCode == 13) {
+              submitTask();
+            }
+          }}
         />
         <button
           className="w-20 mx-auto bg-[#FF79C9] 
         drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]
         text-2xl"
-          onClick={() => {
-            const prevTasks = tasks;
-            setTasks((tasks) => [input, ...tasks]);
-            setInput("");
-          }}
+          onClick={submitTask}
         >
           +
         </button>
@@ -48,7 +54,14 @@ export default function Home() {
         {tasks.map((task, id) => (
           <li key={id} className="my-5 bg-white rounded-xl p-3 flex">
             {task}
-            <button className="ml-auto my-auto pl-5">x</button>
+            <button
+              className="ml-auto my-auto pl-5"
+              onClick={() => {
+                console.log(id);
+              }}
+            >
+              x
+            </button>
           </li>
         ))}
       </ol>
