@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 //! Can take empty
 //! Too long task can still be sumbmittet
@@ -13,6 +13,8 @@ export default function Home() {
     setTasks((tasks) => [input, ...tasks]);
     setInput("");
   };
+  
+
   return (
     <div className="flex flex-col gap-5">
       <button
