@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Task from "../components/Task.js";
 
 //! Can take empty
 //! Too long task can still be sumbmittet
@@ -13,7 +14,11 @@ export default function Home() {
     setTasks((tasks) => [input, ...tasks]);
     setInput("");
   };
-  
+
+  const deleteTask = (id) => {
+    const updatedTasks = tasks.filter((task, index) => index != id)
+    setTasks(updatedTasks)
+  }
 
   return (
     <div className="flex flex-col gap-5">
@@ -27,7 +32,9 @@ export default function Home() {
       >
         start
       </button>
-      <div className="mx-auto flex gap-5">
+      <div className="mx-auto flex gap-5 
+        shadow
+        text-xl">
         <input
           className="w-80"
           placeholder="Add Task"
@@ -44,7 +51,6 @@ export default function Home() {
         />
         <button
           className="w-20 mx-auto bg-[#FF79C9] 
-        drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]
         text-2xl"
           onClick={submitTask}
         >
@@ -52,19 +58,9 @@ export default function Home() {
         </button>
       </div>
 
-      <ol className="w-100 mx-auto text-3xl">
+      <ol className="w-100 text-3xl">
         {tasks.map((task, id) => (
-          <li key={id} className="my-5 bg-white rounded-xl p-3 flex">
-            {task}
-            <button
-              className="ml-auto my-auto pl-5"
-              onClick={() => {
-                console.log(id);
-              }}
-            >
-              x
-            </button>
-          </li>
+          <Task id={id} task={task} deleteTask={deleteTask} key={id} />
         ))}
       </ol>
     </div>
