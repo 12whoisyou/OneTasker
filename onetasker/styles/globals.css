@@ -39,11 +39,11 @@ a {
   .shadow {
     @apply drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)];
   }
-  
+
   .responsive-header {
-  @apply text-3xl md:text-4xl;
+    @apply text-3xl md:text-4xl xl:text-5xl;
   }
   .responsive-text {
-  @apply text-2xl md:text-3xl;
-  } 
+    @apply text-2xl md:text-3xl;
+  }
 }

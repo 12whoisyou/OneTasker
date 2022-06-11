@@ -16,10 +16,14 @@ export default function Home() {
   };
 
   const deleteTask = (id) => {
-    const updatedTasks = tasks.filter((task, index) => index != id)
-    setTasks(updatedTasks)
-  }
+    const updatedTasks = tasks.filter((task, index) => index != id);
+    setTasks(updatedTasks);
+  };
+  const saveTasks = () => {
+    localStorage.Tasks = tasks;
+  };
 
+  useEffect(saveTasks, [tasks]);
   return (
     <div className="flex flex-col gap-5">
       <button
@@ -32,9 +36,11 @@ export default function Home() {
       >
         start
       </button>
-      <div className="mx-auto flex gap-5 
+      <div
+        className="mx-auto flex gap-5 
         shadow
-        text-xl">
+        text-xl"
+      >
         <input
           className="w-80"
           placeholder="Add Task"
