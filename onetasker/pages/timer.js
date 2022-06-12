@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
-let myCounter = 0;
+let secondsUpdated = 0;
+let minutesUpdated = 0;
 let timeout = null;
 export default function Timer() {
   const [seconds, setSeconds] = useState(0);
@@ -9,45 +10,64 @@ export default function Timer() {
 
   //The timer start automaticlly, so we got to cancel it
   useEffect(() => {
+    console.log(localStorage.getItem("Tasks"));
     return () => clearInterval(timeout);
   }, []);
 
-  myCounter = seconds;
+  secondsUpdated = seconds;
+  minutesUpdated = minutes;
+
   const startInterval = () => {
     timeout = setInterval(() => {
       setSeconds((seconds) => seconds + 1);
 
-      // seconds always return 0 but myCounter the updated value
-      if (myCounter === 59) {
+      // seconds always return 0 but secondsUpdated won't
+      if (secondsUpdated === 59) {
         setSeconds(0);
         setMinutes((minutes) => minutes + 1);
+        if (minutesUpdated == 9) {
+          clearInterval(timeout);
+        }
       }
     }, 1000);
+  };
+
+  const doneTask = () => {
+    setSeconds(0);
+    setMinutes(0);
   };
 
   return (
     <div className="flex flex-col gap-5">
       <div
-        className="w-32 h-16 pt-5 mx-auto text-center bg-[#FFE479]
-        drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]"
+        className="px-auto h-16 py-3 text-center bg-[#FFE479]
+        shadow"
       >
         <h1 className="text-4xl">
           {minutes}:{seconds}
         </h1>
       </div>
 
-      <button
-        className="w-32 mx-auto bg-[#FF79C9] 
-        drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]
-        text-2xl"
-        onClick={() => {
-          setTimerOn(!timerOn);
-          if (!timerOn) startInterval();
-          if (timerOn) clearInterval(timeout);
-        }}
-      >
-        {timerOn ? "Stop" : "Start"}
-      </button>
+      <div className="flex gap-5">
+        <button
+          className="flex-auto bg-[#FF79C9] 
+          shadow text-2xl"
+          onClick={() => {
+            setTimerOn(!timerOn);
+            if (!timerOn) startInterval();
+            if (timerOn) clearInterval(timeout);
+          }}
+        >
+          {timerOn ? "Stop" : "Start"}
+        </button>
+        <button
+          className="flex-auto bg-[#FF79C9] 
+          shadow text-2xl"
+          onClick={doneTask}
+        >
+          Done Task
+        </button>
+      </div>
     </div>
   );
 }

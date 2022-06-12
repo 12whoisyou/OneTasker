@@ -19,8 +19,9 @@ export default function Home() {
     const updatedTasks = tasks.filter((task, index) => index != id);
     setTasks(updatedTasks);
   };
+
   const saveTasks = () => {
-    localStorage.Tasks = tasks;
+    localStorage.setItem("Tasks", JSON.stringify(tasks));
   };
 
   useEffect(saveTasks, [tasks]);
