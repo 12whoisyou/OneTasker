@@ -7,10 +7,13 @@ export default function Timer() {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
   const [timerOn, setTimerOn] = useState(false);
+  const [currentTask, setCurrentTask] = useState("");
 
   //The timer start automaticlly, so we got to cancel it
   useEffect(() => {
-    console.log(localStorage.getItem("Tasks"));
+    const firstTask = JSON.parse(localStorage.getItem("Tasks"))[0];
+    setCurrentTask(firstTask);
+    console.log(firstTask, JSON.parse(localStorage.getItem("Tasks")));
     return () => clearInterval(timeout);
   }, []);
 
@@ -33,6 +36,21 @@ export default function Timer() {
   };
 
   const doneTask = () => {
+    let Tasks = JSON.parse(localStorage.getItem("Tasks"));
+    Tasks.shift();
+    localStorage.setItem("Tasks", JSON.stringify(Tasks));
+
+    setCurrentTask(JSON.parse(localStorage.getItem("Tasks"))[0]);
+    setSeconds(0);
+    setMinutes(0);
+  };
+
+  const skipTask = () => {
+    let Tasks = JSON.parse(localStorage.getItem("Tasks"));
+    Tasks.push(Tasks.shift());
+    localStorage.setItem("Tasks", JSON.stringify(Tasks));
+
+    setCurrentTask(JSON.parse(localStorage.getItem("Tasks"))[0]);
     setSeconds(0);
     setMinutes(0);
   };
@@ -63,7 +81,7 @@ export default function Timer() {
         <button
           className="flex-auto bg-[#FF79C9] 
           shadow text-2xl"
-          onClick={doneTask}
+          onClick={skipTask}
         >
           Done Task
         </button>
