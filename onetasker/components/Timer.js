@@ -3,11 +3,10 @@ import React, { useState, useEffect } from "react";
 let secondsUpdated = 0;
 let minutesUpdated = 0;
 let timeout = null;
-export default function Timer() {
+
+export default function Timer({ timerOn, setTimerOn }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
-  const [timerOn, setTimerOn] = useState(true);
-  const [currentTask, setCurrentTask] = useState("");
 
   useEffect(() => {
     const firstTask = JSON.parse(localStorage.getItem("Tasks"))[0];
