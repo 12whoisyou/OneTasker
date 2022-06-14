@@ -58,12 +58,13 @@ export default function Timer() {
   return (
     <div className="flex flex-col gap-5">
       <div
-        className="px-auto h-16 py-3 text-center bg-[#FFE479]
+        className="px-auto py-3 text-center bg-[#FFE479]
         shadow"
       >
-        <h1 className="text-4xl">
+        <h1 className="text-7xl">
           {minutes}:{seconds}
         </h1>
+        <h1 className="text-4xl mt-5">{currentTask}</h1>
       </div>
 
       <div className="flex gap-5">
