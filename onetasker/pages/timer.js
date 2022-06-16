@@ -1,11 +1,7 @@
 import React, { useState, useEffect } from "react";
+import Timer from "../components/Timer.js";
 
-let secondsUpdated = 0;
-let minutesUpdated = 0;
-let timeout = null;
-export default function Timer() {
-  const [seconds, setSeconds] = useState(0);
-  const [minutes, setMinutes] = useState(0);
+export default function TimerPage() {
   const [timerOn, setTimerOn] = useState(true);
   const [currentTask, setCurrentTask] = useState("");
 
@@ -14,25 +10,6 @@ export default function Timer() {
     setCurrentTask(firstTask);
     console.log(firstTask, JSON.parse(localStorage.getItem("Tasks")));
   }, []);
-
-  secondsUpdated = seconds;
-  minutesUpdated = minutes;
-
-  const startInterval = () => {
-    timeout = setInterval(() => {
-      setSeconds((seconds) => seconds + 1);
-
-      // seconds always return 0 but secondsUpdated won't
-      if (secondsUpdated === 59) {
-        setSeconds(0);
-        setMinutes((minutes) => minutes + 1);
-        if (minutesUpdated == 1) {
-          setTimerOn(false);
-          clearInterval(timeout);
-        }
-      }
-    }, 1000);
-  };
 
   const doneTask = () => {
     let Tasks = JSON.parse(localStorage.getItem("Tasks"));
@@ -50,8 +27,6 @@ export default function Timer() {
     localStorage.setItem("Tasks", JSON.stringify(Tasks));
 
     setCurrentTask(JSON.parse(localStorage.getItem("Tasks"))[0]);
-    setSeconds(0);
-    setMinutes(0);
   };
 
   return (
@@ -60,9 +35,7 @@ export default function Timer() {
         className="px-auto py-3 text-center bg-[#FFE479]
         shadow"
       >
-        <h1 className="text-7xl">
-          {minutes}:{seconds}
-        </h1>
+        <Timer timerOn={timerOn} setTimerOn={setTimerOn} />
         <h1 className="text-4xl mt-5">{currentTask}</h1>
       </div>
 
@@ -82,7 +55,6 @@ export default function Timer() {
         >
           Done Task
         </button>
-        <button onClick={startInterval}>startInter</button>
       </div>
     </div>
   );
