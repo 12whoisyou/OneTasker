@@ -4,11 +4,11 @@ import Timer from "../components/Timer.js";
 export default function TimerPage() {
   const [timerOn, setTimerOn] = useState(true);
   const [currentTask, setCurrentTask] = useState("");
+  const [resetTimer, doResetTimer] = useState(false);
 
   useEffect(() => {
     const firstTask = JSON.parse(localStorage.getItem("Tasks"))[0];
     setCurrentTask(firstTask);
-    console.log(firstTask, JSON.parse(localStorage.getItem("Tasks")));
   }, []);
 
   const doneTask = () => {
@@ -17,8 +17,8 @@ export default function TimerPage() {
     localStorage.setItem("Tasks", JSON.stringify(Tasks));
 
     setCurrentTask(JSON.parse(localStorage.getItem("Tasks"))[0]);
-    setSeconds(0);
-    setMinutes(0);
+    doResetTimer((resetTimer) => !resetTimer);
+    setTimerOn(true);
   };
 
   const skipTask = () => {
@@ -27,6 +27,8 @@ export default function TimerPage() {
     localStorage.setItem("Tasks", JSON.stringify(Tasks));
 
     setCurrentTask(JSON.parse(localStorage.getItem("Tasks"))[0]);
+    doResetTimer((resetTimer) => !resetTimer);
+    setTimerOn(true);
   };
 
   return (
@@ -35,7 +37,11 @@ export default function TimerPage() {
         className="px-auto py-3 text-center bg-[#FFE479]
         shadow"
       >
-        <Timer timerOn={timerOn} setTimerOn={setTimerOn} />
+        <Timer
+          timerOn={timerOn}
+          setTimerOn={setTimerOn}
+          resetTimer={resetTimer}
+        />
         <h1 className="text-4xl mt-5">{currentTask}</h1>
       </div>
 

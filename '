@@ -12,24 +12,30 @@ export default function Home() {
   const submitTask = () => {
     const prevTasks = tasks;
     setTasks((tasks) => [input, ...tasks]);
-    localStorage.setItem("Tasks", JSON.stringify([input, ...tasks]));
     setInput("");
   };
 
   const deleteTask = (id) => {
     const updatedTasks = tasks.filter((task, index) => index != id);
-    localStorage.setItem("Tasks", JSON.stringify(updatedTasks));
     setTasks(updatedTasks);
   };
 
-  useEffect(() => {
-    if (localStorage.getItem("Tasks") !== null) {
-      const loadedTasks = JSON.parse(localStorage.getItem("Tasks"));
-      setTasks(loadedTasks);
-      console.log("loaded");
-    }
-  }, []);
+  const saveTasks = () => {
+    localStorage.setItem("Tasks", JSON.stringify(tasks));
+    console.log("Saved Tasks")
+  };
 
+  const loadTasks = () => {
+    if (localStorage.getItem("Tasks") === null) {
+      console.log("Don't exist");
+    } else {
+      const savedTasks = JSON.parse(localStorage.getItem("Tasks"));
+      setTasks(savedTasks);
+      console.log("Loaded Tasks");
+    }
+  };
+  useEffect(loadTasks, []);
+  useEffect(saveTasks, [tasks]);
   return (
     <div className="flex flex-col gap-5">
       <button
