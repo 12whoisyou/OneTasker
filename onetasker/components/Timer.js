@@ -12,11 +12,17 @@ export default function Timer({ timerOn, setTimerOn, resetTimer }) {
         } else {
           setMinutes((minutes) => minutes + 1);
           setSeconds(0);
-          if (minutes < 9) {
+          if (minutes + 1 > 9) {
             setTimerOn(false);
+            const timeTotal = localStorage.getItem("Time");
+            if (timeTotal !== null) {
+              localStorage.setItem("Time", parseInt(timeTotal) + 10);
+            } else {
+              localStorage.setItem("Time", 10);
+            }
           }
         }
-      }, 1000);
+      }, 10);
 
       return () => clearInterval(timer);
     }
