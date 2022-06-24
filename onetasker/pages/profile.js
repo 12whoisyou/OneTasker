@@ -19,9 +19,9 @@ export default function Home() {
 
   return (
     <div className="">
-      <h1>{times[0]} seconds</h1>
-      <h1>{times[1]} minutes</h1>
-      <h1>{times[2]} hours</h1>
+      <h1 className="responsive-text">{times[0]} seconds</h1>
+      <h1 className="responsive-text">{times[1]} minutes</h1>
+      <h1 className="responsive-text">{times[2]} hours</h1>
     </div>
   );
 }

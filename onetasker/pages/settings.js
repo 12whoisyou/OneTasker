@@ -7,7 +7,7 @@ export default function Home() {
 
   return (
     <div className="">
-      <h1>Time per task </h1> <input onChange={(e) => save(e)} type="number" />
+      <h1 className="responsive-text">Time per task </h1> <input onChange={(e) => save(e)} type="number" />
     </div>
   );
 }
