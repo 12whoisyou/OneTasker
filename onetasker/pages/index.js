@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, updateState } from "react";
 import Task from "../components/Task.js";
-
-//! Can take empty
-//! Too long task can still be sumbmittet
-//! X button not working
 
 export default function Home() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState("");
 
   const submitTask = () => {
-    const prevTasks = tasks;
-    setTasks((tasks) => [input, ...tasks]);
+    //Is task valid?
+    if (input.trim().length === 0 || tasks.some(task=> task == input)){
+      return
+    }
+
+    setTasks((tasks) => [...tasks, input]);
     localStorage.setItem("Tasks", JSON.stringify([input, ...tasks]));
     setInput("");
   };
 
-  const deleteTask = (id) => {
-    const updatedTasks = tasks.filter((task, index) => index != id);
+  const deleteTask = (thisTask) => {
+    const updatedTasks = tasks.filter((task) => task != thisTask);
     localStorage.setItem("Tasks", JSON.stringify(updatedTasks));
     setTasks(updatedTasks);
+  };
+  const moveTask = (task, up = false) => {
+    let updatedTasks = tasks.filter((task) => task != "This shit works?!!!!");
+    console.log(updatedTasks);
+    const fromIndex = updatedTasks.indexOf(task);
+    const toIndex = fromIndex + (up ? -1 : 1);
+    updatedTasks.splice(toIndex, 0, updatedTasks.splice(fromIndex, 1)[0]);
+    console.log(updatedTasks, toIndex);
+    setTasks((tasks) => updatedTasks);
   };
 
   useEffect(() => {
@@ -71,8 +80,13 @@ export default function Home() {
       </div>
 
       <ol className="w-100 text-3xl">
-        {tasks.map((task, id) => (
-          <Task id={id} task={task} deleteTask={deleteTask} key={id} />
+        {tasks.map((task) => (
+          <Task
+            task={task}
+            deleteTask={deleteTask}
+            moveTask={moveTask}
+            key={task}
+          />
         ))}
       </ol>
     </div>
