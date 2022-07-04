@@ -3,6 +3,14 @@ import React, { useState, useEffect } from "react";
 export default function Timer({ timerOn, setTimerOn, resetTimer }) {
   const [seconds, setSeconds] = useState(0);
   const [minutes, setMinutes] = useState(0);
+  const [savedTime, setSavedTime] = useState(10);
+
+  useEffect(() => {
+    if (localStorage.getItem("Timer") !== null) {
+      setSavedTime(parseInt(localStorage.getItem("Timer")));
+      //console.log(localStorage.getItem("Timer"), "Saved Time?");
+    }
+  }, []);
 
   useEffect(() => {
     if (timerOn) {
@@ -12,7 +20,7 @@ export default function Timer({ timerOn, setTimerOn, resetTimer }) {
         } else {
           setMinutes((minutes) => minutes + 1);
           setSeconds(0);
-          if (minutes + 1 > 9) {
+          if (minutes > savedTime - 2) {
             setTimerOn(false);
             const timeTotal = localStorage.getItem("Time");
             if (timeTotal !== null) {

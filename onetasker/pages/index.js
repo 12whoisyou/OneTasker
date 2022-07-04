@@ -1,4 +1,4 @@
-import React, { useState, useEffect, updateState } from "react";
+import React, { useState, useEffect } from "react";
 import Task from "../components/Task.js";
 
 export default function Home() {
@@ -7,8 +7,8 @@ export default function Home() {
 
   const submitTask = () => {
     //Is task valid?
-    if (input.trim().length === 0 || tasks.some(task=> task == input)){
-      return
+    if (input.trim().length === 0 || tasks.some((task) => task == input)) {
+      return;
     }
 
     setTasks((tasks) => [...tasks, input]);

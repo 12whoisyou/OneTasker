@@ -22,7 +22,7 @@ export default function Header() {
         }}
         className="responsive-text"
       >
-        settings
+        <img src="settings.jpg" className="w-10 hover:animate-spin" />
       </button>
     </div>
   );
