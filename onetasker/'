@@ -12,7 +12,7 @@ export default function Home({ task, deleteTask, moveTask }) {
     >
       <div className="w-full">{task}</div>
       <button
-        className="my-auto px-2 rounded"
+        className="ml-auto my-auto pl-5 bg-black rounded"
         onClick={() => {
           moveTask(task, true);
         }}
@@ -20,7 +20,7 @@ export default function Home({ task, deleteTask, moveTask }) {
         ↑
       </button>
       <button
-        className="my-auto px-2"
+        className="ml-auto my-auto pl-5 bg-white"
         onClick={() => {
           moveTask(task, false);
         }}
@@ -28,7 +28,7 @@ export default function Home({ task, deleteTask, moveTask }) {
         ↓
       </button>
       <button
-        className="my-auto px-2"
+        className=" my-auto pl-5 bg-white"
         onClick={() => {
           deleteTask(task);
         }}

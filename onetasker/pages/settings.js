@@ -18,8 +18,8 @@ export default function Home() {
 
   return (
     <div className="">
-      <h1 className="responsive-text">Time per task </h1>{" "}
-      <input onChange={(e) => save(e)} type="number" defaultvalue={time} />
+      <h1 className="responsive-text">Time per task </h1>
+      <input onChange={(e) => save(e)} type="number" defaultValue={time} className="rounded w-min"/>
     </div>
   );
 }

@@ -44,7 +44,7 @@ export default function Home() {
       <button
         className="w-40 mx-auto bg-[#FF79C9] 
         drop-shadow-[7px_7px_0_rgba(0,0,0,0.25)]
-        text-2xl"
+        responsive-text"
         onClick={() => {
           window.location.href = "/timer";
         }}
